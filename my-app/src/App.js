@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import Top from './top.scss/top';
 import Headear from './headear';
-import Cart from './cart';
+import Cart from './cart/cart';
 
 const img1 = 'https://contents.mediadecathlon.com/p2155510/2d4c941c14f1be10172d8977107329a6/p2155510.jpg?format=auto&quality=70&f=650x0';
 const img2 = 'https://contents.mediadecathlon.com/p2155551/11e0e6f8f6f4906c580007288ce1bdd0/p2155551.jpg?format=auto&quality=70&f=650x0'
@@ -95,22 +95,32 @@ const data = {
 }
 function App() {
   
-  const [cart,setCart] = useState([]);
+  const [card,setCard] = useState([]);
+  const [open, setOpen] = useState(false)
   
    const addtocart = (item) => {
-      const product = [...cart];
+      const product = [...card];
       if(!product.includes(item)){
         product.push(item)
       }
-      setCart(product)
+       let index = product.indexOf(item)
+        product[index].quantity++
+        
+       setCard(product)
+ 
    } 
+   const openModal = () => {
+       setOpen(true)
+     
+   }
 
   return (
      <div className='container'>
  
-      <Top/>
+      <Top openModal={openModal}/>
+      
       <Headear data={data} addtocart={addtocart}/>
-      <Cart product={cart}/>   
+      <Cart products={card} modal={open}/>   
      </div>
   );
 }
