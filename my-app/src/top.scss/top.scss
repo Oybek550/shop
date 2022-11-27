@@ -1,0 +1,25 @@
+.navbar {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  .cart {
+    width: 100px;
+    height: 40px;
+    background-color: red;
+    border-radius: 10px;
+    text-align: center;
+    p{
+      margin-top: 4px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+    }
+  }
+  .logo{
+    margin-right: 1130px;
+    img {
+      border-radius: 10px;
+      height: 40px;
+    }
+  }
+}
