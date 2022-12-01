@@ -2,7 +2,7 @@ import './App.css';
 import './main.scss';
 import { Button,Form,Row,Col } from 'react-bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
+import { useEffect,useState } from 'react';
 import Top from './top.scss/top';
 import Headear from './headear';
 import Cart from './cart/cart';
@@ -97,7 +97,8 @@ function App() {
   
   const [card,setCard] = useState([]);
   const [open, setOpen] = useState(false)
-  
+  const [cost,setCost] = useState()
+
    const addtocart = (item) => {
       const product = [...card];
       if(!product.includes(item)){
@@ -107,20 +108,49 @@ function App() {
         product[index].quantity++
         
        setCard(product)
- 
+     
    } 
    const openModal = () => {
-       setOpen(true)
+       setOpen(!open)
      
    }
+   const remov = () => {
+     setOpen(false)
+   }
 
+    const handleclick = (item,e) => {
+      const product = [...card]
+      let index = product.indexOf(item)
+      if(e === '+'){
+        product[index].quantity++
+      }else {
+        if(product[index].quantity > 1){
+          product[index].quantity--
+        }else{
+          product.splice(0,1)
+        }
+      }
+     
+      setCard(product)
+    
+    }
+
+   useEffect(() => {
+    let total = 0;
+    for (var i = 0; i < card.length; i++){
+       total += card[i].price * card[i].quantity;   
+    }
+     setCost(total)
+
+   },[card])
+   
   return (
      <div className='container'>
- 
       <Top openModal={openModal}/>
       
-      <Headear data={data} addtocart={addtocart}/>
-      <Cart products={card} modal={open}/>   
+      <Headear  data={data} addtocart={addtocart}/>
+<Cart products={card} modal={open} remov={remov}  handleclick={handleclick} sum={cost}/>   
+<input type="text"/>
      </div>
   );
 }
