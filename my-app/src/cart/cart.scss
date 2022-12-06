@@ -1,16 +1,23 @@
 .model {
   width: 500px;
-  max-height:1000px;
-  position: absolute;
-  top: 10%;
+  height:585px;
+  position: fixed;
+  top: 70px;
   left: 33%;
-  background-color: rgb(176, 194, 209);
+  transition: all 300ms linear;
+  background-color: #fff;
+  border-radius: 10px;
   opacity: 1;
+  padding:10px;
+  overflow: hidden;
 
   .product {
    display: flex;  
    justify-content: space-between;
- 
+   button{
+    font-size: 10px;
+    background-color: rgb(202, 247, 158);
+   }
    
   img{
     width: 100px;

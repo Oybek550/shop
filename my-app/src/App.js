@@ -150,7 +150,7 @@ function App() {
       
       <Headear  data={data} addtocart={addtocart}/>
 <Cart products={card} modal={open} remov={remov}  handleclick={handleclick} sum={cost}/>   
-<input type="text"/>
+
      </div>
   );
 }
